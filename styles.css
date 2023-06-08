@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family: 'Arial', sans-serif;
   background-color: #fcebd9;
-  background-image: url("/Users/kimminji/git_hub/website_made/practice_2/자료/background.gif");
+  background-image: url("자료/background.gif");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
