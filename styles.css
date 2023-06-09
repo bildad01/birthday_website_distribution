@@ -180,6 +180,58 @@ body {
   
 }
 
+#home1Section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#startButton {
+  background-color: pink;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#startButton:hover {
+  background-color: hotpink;
+}
+
+
+
+
+.gift-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.gift-container img {
+  margin-right: 10px; /* 이미지 사이의 간격을 조절할 수 있습니다 */
+  width: 300px; /* 이미지의 너비를 100px로 조절 */
+  height: auto; /* 이미지의 높이를 자동으로 조절하여 비율 유지 */
+} 
+.gift-container p {
+  font-size: 20px; /* 메시지의 글꼴 크기 */
+  color: #ff829d; /* 메시지의 글꼴 색상 */
+  text-align: center; /* 메시지의 정렬 방식 */
+  margin-top: 10px; /* 메시지와 이미지 사이의 간격 */
+  font-weight: bold; /* 메시지의 글꼴 굵기 */
+  text-transform: uppercase; /* 메시지의 대문자 변환 */
+  
+}
+
+
+
+
+
+
+
+
+
 /* 케이크 버튼 스타일 */
 #cakeButton {
   margin-top: 20px;

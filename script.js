@@ -17,9 +17,17 @@ document.addEventListener("DOMContentLoaded", function() {
   const cakeButton = document.getElementById("cakeButton");
   const cakeBtn = document.getElementById("cakeBtn");
   const cakeSection = document.getElementById("cakeSection");
-  
   const home1Section = document.getElementById("home1Section");
   const startButton = document.getElementById("startButton");
+
+
+  const giftBtn = document.getElementById("giftBtn");
+  const giftSection = document.getElementById("giftSection");
+
+  giftBtn.addEventListener("click", function() {
+    hideAllSections();
+    giftSection.classList.remove("hidden");
+  });
 
   startButton.addEventListener("click", function() {
     home1Section.style.display = "none";
@@ -31,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     cameraBtn.style.display = "inline";
     messageBtn.style.display = "inline";
     cakeBtn.style.display = "inline";
-    preBtn.style.display = "inline";
+    giftBtn.style.display = "inline";
   }
   
   function hideButtons() {
@@ -39,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
     cameraBtn.style.display = "none";
     messageBtn.style.display = "none";
     cakeBtn.style.display = "none";
-    preBtn.style.display = "none";
+    giftBtn.style.display = "none";
   }
   
   hideButtons(); // 페이지 로드 시에 버튼들을 숨김
@@ -61,14 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-    // 홈으로 돌아가는 버튼 클릭 이벤트 처리
-  homeBtn.addEventListener("click", function(event) {
-    event.preventDefault();
-    homeSection.classList.remove("hidden");
-    cakeSection.classList.add("hidden"); // 수정: 케이크 섹션을 숨김
-    homeSection.scrollIntoView({ behavior: "smooth" });
-    
-  });
+
 
   let isMusicPlaying = false; // 음악 재생 상태 변수
 
@@ -112,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
       
   });
-
 
   // 음악 멈춤 버튼 클릭 이벤트 리스너
   cakeButton.addEventListener("click", function() {
@@ -194,13 +194,80 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
+
+  // 이미지 요소들을 선택합니다.
+  const giftImages = document.querySelectorAll("#giftSection .gift-container img");
+
+  // 이미지를 클릭했을 때 실행되는 함수를 정의합니다.
+  function handleClick() {
+    // 이미지가 이미 클릭된 경우에는 함수를 종료합니다.
+    if (this.classList.contains("clicked")) {
+      return;
+    }
+
+    const random = Math.random(); // 0부터 1 사이의 난수를 생성합니다.
+    const messageContainer = document.createElement("p"); // 메시지를 위한 새로운 <p> 요소를 생성합니다.
+
+    if (random < 0.3) {
+      // 당첨 이미지와 메시지를 보여줍니다.
+      this.src = "./pp/image5.png";
+      messageContainer.textContent = "사진 찍어서 나한테 보내줘";
+    } else {
+      // 꽝 이미지와 메시지를 보여줍니다.
+      this.src = "./pp/image4.jpeg";
+      messageContainer.textContent = "내년에 다시 시도해보쟝";
+    }
+
+    // 이미지 아래에 메시지 요소를 삽입합니다.
+    this.parentNode.appendChild(messageContainer);
+
+    // 클릭한 이미지를 제외한 나머지 이미지들을 숨깁니다.
+    for (const image of giftImages) {
+      if (image !== this) {
+        image.style.display = "none";
+      }
+    }
+
+    // 이미지에 clicked 클래스를 추가하여 이미지가 클릭되었음을 표시합니다.
+    this.classList.add("clicked");
+
+    // 이미지 요소에 이벤트 리스너를 제거합니다.
+    this.removeEventListener("click", handleClick);
+  }
+
+  // 각 이미지 요소에 이벤트 리스너를 등록합니다.
+  giftImages.forEach(function (image) {
+    image.addEventListener("click", handleClick);
+  });
+
+      
+    
+
+    // 각 이미지 요소에 이벤트 리스너를 등록합니다.
+    giftImages.forEach(function(image) {
+      image.addEventListener("click", handleClick);
+    });
+
+
   
+
+
+
+
+
+
+
+
+
+
+
   // 홈으로 돌아가는 버튼 클릭 이벤트 처리
   homeBtn.addEventListener("click", function(event) {
     event.preventDefault();
     homeSection.classList.remove("hidden");
     cameraSection.classList.add("hidden");
     messageSection.classList.add("hidden");
+    giftSection.classList.add("hidden"); 
     homeSection.scrollIntoView({ behavior: "smooth" });
   });
 
@@ -209,7 +276,8 @@ document.addEventListener("DOMContentLoaded", function() {
     homeSection.classList.add("hidden");
     cameraSection.classList.remove("hidden");
     messageSection.classList.add("hidden");
-    cakeSection.classList.add("hidden"); // 케이크 섹션 숨김
+    cakeSection.classList.add("hidden");
+    giftSection.classList.add("hidden"); 
   });
 
   // 메세지 버튼 클릭 시
@@ -217,7 +285,17 @@ document.addEventListener("DOMContentLoaded", function() {
     homeSection.classList.add("hidden");
     cameraSection.classList.add("hidden");
     messageSection.classList.remove("hidden");
-    cakeSection.classList.add("hidden"); // 케이크 섹션 숨김
+    cakeSection.classList.add("hidden"); 
+    giftSection.classList.add("hidden"); 
+  });
+
+  // 카메라 버튼 클릭 시
+  giftBtn.addEventListener("click", function() {
+    homeSection.classList.add("hidden");
+    cameraSection.classList.add("hidden");
+    messageSection.classList.add("hidden");
+    cakeSection.classList.add("hidden"); 
+    giftSection.classList.remove("hidden"); 
   });
 
   // 비디오 스트림 가져오기
@@ -233,4 +311,5 @@ document.addEventListener("DOMContentLoaded", function() {
     cameraSection.classList.add("hidden");
     messageSection.classList.add("hidden");
     cakeSection.classList.add("hidden"); // 케이크 섹션 숨김
+    giftSection.classList.add("hidden"); 
 });
