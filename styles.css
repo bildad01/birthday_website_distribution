@@ -3,7 +3,7 @@ body {
   padding: 0;
   font-family: 'Arial', sans-serif;
   background-color: #fcebd9;
-  background-image: url("자료/background.gif");
+  background-image: url("./pp/background.gif");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -62,6 +62,7 @@ body {
     color: #f58220; /* 폰트 색상 변경 */
     margin-top: 0; /* 여백 제거 */
   }
+
 
   section.hidden {
     display: none;
@@ -284,6 +285,6 @@ body {
     width: 100%;
     text-align: center;
     padding: 10px;
-    background-color: #ff87ab7f;
+    background-color:  #ffd3b6c8;
     color: #FFF;
   }

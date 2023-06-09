@@ -18,7 +18,32 @@ document.addEventListener("DOMContentLoaded", function() {
   const cakeBtn = document.getElementById("cakeBtn");
   const cakeSection = document.getElementById("cakeSection");
   
+  const home1Section = document.getElementById("home1Section");
+  const startButton = document.getElementById("startButton");
 
+  startButton.addEventListener("click", function() {
+    home1Section.style.display = "none";
+    showButtons(); // 버튼들을 보이도록 호출
+  });
+
+  function showButtons() {
+    homeBtn.style.display = "inline";
+    cameraBtn.style.display = "inline";
+    messageBtn.style.display = "inline";
+    cakeBtn.style.display = "inline";
+    preBtn.style.display = "inline";
+  }
+  
+  function hideButtons() {
+    homeBtn.style.display = "none";
+    cameraBtn.style.display = "none";
+    messageBtn.style.display = "none";
+    cakeBtn.style.display = "none";
+    preBtn.style.display = "none";
+  }
+  
+  hideButtons(); // 페이지 로드 시에 버튼들을 숨김
+  
   cakeBtn.addEventListener("click", function() {
     showCakeSection();
   });
@@ -168,6 +193,8 @@ document.addEventListener("DOMContentLoaded", function() {
       messageInput.value = "";
     }
   });
+
+  
   // 홈으로 돌아가는 버튼 클릭 이벤트 처리
   homeBtn.addEventListener("click", function(event) {
     event.preventDefault();
