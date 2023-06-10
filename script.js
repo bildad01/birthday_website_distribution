@@ -20,20 +20,45 @@ document.addEventListener("DOMContentLoaded", function() {
   const home1Section = document.getElementById("home1Section");
   const startButton = document.getElementById("startButton");
 
-
+  const sentences = ["다이슨 에어랩을 갖고싶은 금쪽이 민지 후원하기.. ", "카카오뱅크 3333-13-0565879 김민지"];
+  const sentence1Element = document.getElementById("sentence1");
+  const sentence2Element = document.getElementById("sentence2");
+  const typingSpeed = 100; // 타이핑 속도 (밀리초)
+  
+  // 홈 섹션이 나타난 후 3초 뒤에 타이핑 효과 실행
+  setTimeout(() => {
+    typeSentence(sentences[0], sentence1Element);
+    setTimeout(() => {
+      typeSentence(sentences[1], sentence2Element);
+    }, typingSpeed * sentences[0].length);
+  }, 3000);
+  
+  function typeSentence(sentence, element) {
+    let sentenceIndex = 0;
+    let intervalId = setInterval(() => {
+      if (sentenceIndex < sentence.length) {
+        element.textContent += sentence[sentenceIndex];
+        sentenceIndex++;
+      } else {
+        clearInterval(intervalId);
+      }
+    }, typingSpeed);
+  }
+  
+  
+// 선물 버튼 클릭시 보여질 기능들
   const giftBtn = document.getElementById("giftBtn");
   const giftSection = document.getElementById("giftSection");
-
   giftBtn.addEventListener("click", function() {
     hideAllSections();
     giftSection.classList.remove("hidden");
   });
-
   startButton.addEventListener("click", function() {
     home1Section.style.display = "none";
     showButtons(); // 버튼들을 보이도록 호출
+    homeBtn.click();
   });
-
+// 버튼을 숨기고 보여질 기능
   function showButtons() {
     homeBtn.style.display = "inline";
     cameraBtn.style.display = "inline";
@@ -208,14 +233,18 @@ document.addEventListener("DOMContentLoaded", function() {
     const random = Math.random(); // 0부터 1 사이의 난수를 생성합니다.
     const messageContainer = document.createElement("p"); // 메시지를 위한 새로운 <p> 요소를 생성합니다.
 
-    if (random < 0.3) {
+    if (random < 0.4) {
       // 당첨 이미지와 메시지를 보여줍니다.
-      this.src = "./pp/image5.png";
-      messageContainer.textContent = "사진 찍어서 나한테 보내줘";
+      this.src = "./pp/image5.jpeg";
+      messageContainer.textContent = "공주랑 밥 먹을 수 있는 기회를 줄게 요로롱!";
+    }else if (random < 0.5) {
+      // 당첨 이미지와 메시지를 보여줍니다.
+      this.src = "./pp/image6.jpeg";
+      messageContainer.textContent = "언제 사용할거야? ><";
     } else {
       // 꽝 이미지와 메시지를 보여줍니다.
       this.src = "./pp/image4.jpeg";
-      messageContainer.textContent = "내년에 다시 시도해보쟝";
+      messageContainer.textContent = "너 지금 0.1퍼의 확률로 꽝 나왔어!!!";
     }
 
     // 이미지 아래에 메시지 요소를 삽입합니다.
@@ -227,6 +256,9 @@ document.addEventListener("DOMContentLoaded", function() {
         image.style.display = "none";
       }
     }
+
+    // 이미지 크기 조정
+    this.style.width = "500px";
 
     // 이미지에 clicked 클래스를 추가하여 이미지가 클릭되었음을 표시합니다.
     this.classList.add("clicked");
@@ -240,26 +272,6 @@ document.addEventListener("DOMContentLoaded", function() {
     image.addEventListener("click", handleClick);
   });
 
-      
-    
-
-    // 각 이미지 요소에 이벤트 리스너를 등록합니다.
-    giftImages.forEach(function(image) {
-      image.addEventListener("click", handleClick);
-    });
-
-
-  
-
-
-
-
-
-
-
-
-
-
 
   // 홈으로 돌아가는 버튼 클릭 이벤트 처리
   homeBtn.addEventListener("click", function(event) {
@@ -268,6 +280,7 @@ document.addEventListener("DOMContentLoaded", function() {
     cameraSection.classList.add("hidden");
     messageSection.classList.add("hidden");
     giftSection.classList.add("hidden"); 
+    cakeSection.classList.add("hidden");
     homeSection.scrollIntoView({ behavior: "smooth" });
   });
 
@@ -289,7 +302,16 @@ document.addEventListener("DOMContentLoaded", function() {
     giftSection.classList.add("hidden"); 
   });
 
-  // 카메라 버튼 클릭 시
+  cakeBtn.addEventListener("click", function() {
+    homeSection.classList.add("hidden");
+    cameraSection.classList.add("hidden");
+    messageSection.classList.radd("hidden");
+    cakeSection.classList.remove("hidden"); 
+    giftSection.classList.add("hidden"); 
+  });
+
+
+  // 선물 버튼 클릭 시
   giftBtn.addEventListener("click", function() {
     homeSection.classList.add("hidden");
     cameraSection.classList.add("hidden");
